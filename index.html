@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronic Kidney Disease Risk Assistant | Medical AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">CKD<span>AI</span></div>
+            <div class="nav-links">
+                <a href="javascript:void(0)" onclick="event.preventDefault(); nextStep(0)" class="active">Home</a>
+                <a href="javascript:void(0)" onclick="event.preventDefault(); nextStep(1)">Clinical History</a>
+                <a href="javascript:void(0)" onclick="event.preventDefault(); nextStep(2)">Numerical Lab Test</a>
+                <a href="javascript:void(0)" onclick="event.preventDefault(); nextStep(3)">Diagnostic Lab Tests</a>
+                <a href="javascript:void(0)" onclick="event.preventDefault(); nextStep(3)">Symptoms</a>
+            </div>
+            <div class="nav-hamburger" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <main id="app">
+            <div id="step-container">
+                <!-- Step 0: Landing Page (Hero) -->
+                <section id="step-0" class="step active landing-hero">
+                    <div class="hero-content">
+                        <div class="hero-text-side">
+                            <h1 class="glitch-text">Chronic Kidney Disease Predictor</h1>
+                            <p class="hero-subtitle">Advanced Medical AI for early screening and diagnostic support.
+                                Precision healthcare at your fingertips.</p>
+                            <div class="hero-actions">
+                                <button type="button" class="primary-action start-btn" id="hero-start-btn"
+                                    onclick="nextStep(1)">Start →</button>
+                            </div>
+                        </div>
+                        <div class="hero-image-side">
+                            <div class="image-wrapper">
+                                <img src="ChatGPT Image Feb 25, 2026, 07_22_29 AM.png" alt="Kidney Illustration"
+                                    class="custom-header-img">
+                                <div class="image-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 1: Clinical History -->
+                <section id="step-1" class="step">
+                    <h2>Clinical History</h2>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Age</label>
+                            <input type="number" id="age" placeholder="e.g. 48" min="0" max="120">
+                        </div>
+                        <div class="input-group">
+                            <label>Blood Pressure (mm/Hg)</label>
+                            <input type="number" id="bp" placeholder="e.g. 80">
+                        </div>
+                        <div class="input-group">
+                            <label>Hypertension?</label>
+                            <select id="htn">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Diabetes Mellitus?</label>
+                            <select id="dm">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Coronary Artery Disease?</label>
+                            <select id="cad">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Appetite</label>
+                            <select id="appet">
+                                <option value="good">Good</option>
+                                <option value="poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="nextStep(2)">Next: Numerical Lab Tests</button>
+                </section>
+
+                <!-- Step 2: Numerical Lab Tests -->
+                <section id="step-2" class="step">
+                    <h2>Numerical Lab Tests</h2>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Blood Glucose Random (mg/dL)</label>
+                            <input type="number" id="bgr" placeholder="e.g. 121">
+                        </div>
+                        <div class="input-group">
+                            <label>Blood Urea (mg/dL)</label>
+                            <input type="number" id="bu" placeholder="e.g. 36">
+                        </div>
+                        <div class="input-group">
+                            <label>Serum Creatinine (mg/dL)</label>
+                            <input type="number" id="sc" placeholder="e.g. 1.2" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Sodium (mEq/L)</label>
+                            <input type="number" id="sod" placeholder="e.g. 138">
+                        </div>
+                        <div class="input-group">
+                            <label>Potassium (mEq/L)</label>
+                            <input type="number" id="pot" placeholder="e.g. 4.4" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Hemoglobin (g/dL)</label>
+                            <input type="number" id="hemo" placeholder="e.g. 15.4" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Packed Cell Volume (%)</label>
+                            <input type="number" id="pcv" placeholder="e.g. 44">
+                        </div>
+                        <div class="input-group">
+                            <label>White Blood Cell Count</label>
+                            <input type="number" id="wc" placeholder="e.g. 7800">
+                        </div>
+                        <div class="input-group">
+                            <label>Red Blood Cell Count</label>
+                            <input type="number" id="rc" placeholder="e.g. 5.2" step="0.1">
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button class="secondary" onclick="nextStep(1)">Back</button>
+                        <button onclick="nextStep(3)">Next: Diagnostic Lab Tests</button>
+                    </div>
+                </section>
+
+                <!-- Step 3: Diagnostic Lab Tests & Symptoms -->
+                <section id="step-3" class="step">
+                    <h2>Diagnostic Lab Tests & Symptoms</h2>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Specific Gravity</label>
+                            <select id="sg">
+                                <option value="1.005">1.005</option>
+                                <option value="1.010">1.010</option>
+                                <option value="1.015">1.015</option>
+                                <option value="1.020">1.020</option>
+                                <option value="1.025" selected>1.025</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Albumin (0-5)</label>
+                            <select id="al">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Sugar (0-5)</label>
+                            <select id="su">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Red Blood Cells</label>
+                            <select id="rbc">
+                                <option value="normal">Normal</option>
+                                <option value="abnormal">Abnormal</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Pus Cell</label>
+                            <select id="pc">
+                                <option value="normal">Normal</option>
+                                <option value="abnormal">Abnormal</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Pus Cell Clumps</label>
+                            <select id="pcc">
+                                <option value="notpresent">Not Present</option>
+                                <option value="present">Present</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Bacteria</label>
+                            <select id="ba">
+                                <option value="notpresent">Not Present</option>
+                                <option value="present">Present</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Pedal Edema?</label>
+                            <select id="pe">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Anemia?</label>
+                            <select id="ane">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button class="secondary" onclick="nextStep(2)">Back</button>
+                        <button class="primary-action" onclick="analyzeData()">Analyze Risk</button>
+                    </div>
+                </section>
+
+                <!-- Result Step -->
+                <section id="result-step" class="step">
+                    <div class="result-header">
+                        <h2>Analysis Result</h2>
+                        <div id="risk-badge" class="badge">Low Risk</div>
+                    </div>
+
+                    <div id="recommendations" class="recommendations">
+                        <!-- Recommendations will be injected here -->
+                    </div>
+
+                    <!-- Explainable AI Section -->
+                    <div class="explanation-card">
+                        <h3><i class="icon">🔍</i> Explainable AI Analysis</h3>
+                        <p class="explanation-text" id="ai-narrative">
+                            Analyzing your markers to understand the systemic impact...
+                        </p>
+
+                        <div class="systems-grid" id="systems-impact">
+                            <!-- System impacts will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Disease Information & Remedies -->
+                    <div class="info-section">
+                        <div class="info-tabs">
+                            <button class="tab-btn active" onclick="showTab(event, 'disease')">About CKD</button>
+                            <button class="tab-btn" onclick="showTab(event, 'remedies')">Cures & Remedies</button>
+                        </div>
+                        <div id="disease-tab" class="tab-content active">
+                            <h4>What is Chronic Kidney Disease?</h4>
+                            <p>CKD is a condition where kidneys are damaged and cannot filter blood as well as they
+                                should. This leads to waste build-up in the body and other health problems like heart
+                                disease and stroke.</p>
+                            <ul>
+                                <li><strong>Stage 1-2:</strong> Mild loss of function.</li>
+                                <li><strong>Stage 3:</strong> Moderate loss of function.</li>
+                                <li><strong>Stage 4-5:</strong> Severe loss / Kidney failure.</li>
+                            </ul>
+                        </div>
+                        <div id="remedies-tab" class="tab-content">
+                            <h4>General Management & Remedies</h4>
+                            <div id="dynamic-remedies">
+                                <!-- Dynamic remedies based on inputs -->
+                            </div>
+                            <p class="note"><em>Note: Remedies vary based on the underlying cause. Always follow your
+                                    doctor's protocol.</em></p>
+                        </div>
+                    </div>
+
+                    <div class="disclaimer">
+                        <p><strong>IMPORTANT:</strong> This tool is for educational purposes only. It is NOT a medical
+                            diagnosis. Please consult a qualified healthcare professional for medical advice.</p>
+                    </div>
+                    <button class="secondary" onclick="resetForm()">Start Over</button>
+                </section>
+            </div>
+            <!-- Educational Section -->
+            <div class="card educational-section">
+                <h3>Understanding Chronic Kidney Disease</h3>
+                <p class="edu-text">In Chronic Kidney Disease, kidneys lose their ability to filter waste, often
+                    becoming smaller, granular, and scarred over time.</p>
+            </div>
+        </main>
+    </div> <!-- End of .container main-content -->
+
+    <footer>
+        <p>&copy; 2026 Medical Assistant AI. All rights reserved.</p>
+    </footer>
+    <!-- Chatbot UI -->
+    <div id="chat-trigger" class="chat-trigger" onclick="toggleChat()">
+        <span class="chat-icon">💬</span>
+    </div>
+
+    <div id="chat-window" class="chat-window hidden">
+        <div class="chat-header">
+            <h3>Kidney Health AI</h3>
+            <button onclick="toggleChat()" class="close-btn">&times;</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message ai">Hello! I'm your Kidney Health AI. How can I help you today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask about CKD..." onkeypress="handleChatKey(event)">
+            <button onclick="sendMessage()" id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="nav.js"></script>
+    <script src="chat.js"></script>
+</body>
+
+</html>
