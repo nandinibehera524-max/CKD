@@ -1,6 +1,3 @@
-const GROQ_API_KEY = "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";
-const MODEL_NAME = "llama-3.3-70b-versatile";
-
 let chatHistory = [
     {
         role: "system",
@@ -30,17 +27,13 @@ async function sendMessage() {
     const loadingMessage = appendMessage('ai', 'Thinking...');
 
     try {
-        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        const response = await fetch("/api/chat", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${GROQ_API_KEY}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: MODEL_NAME,
-                messages: chatHistory,
-                temperature: 0.7,
-                max_tokens: 500
+                messages: chatHistory
             })
         });
 
@@ -51,8 +44,8 @@ async function sendMessage() {
         chatHistory.push({ role: "assistant", content: aiResponse });
 
     } catch (error) {
-        console.error("Error calling Groq API:", error);
-        loadingMessage.innerHTML = "Error connecting to AI. Please check your API key.";
+        console.error("Error calling chat API:", error);
+        loadingMessage.innerHTML = "Error connecting to AI. Please try again later.";
     }
 }
 
